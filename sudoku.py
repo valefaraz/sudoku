@@ -51,9 +51,28 @@ class Sudoku():
             print("Problema en el Bloque")
         else:
             c += 1
-        if c == 2:
+        if self.control_de_fijos(fila, columna)is False:
+            print("No se puede sobreescribir ese valor")
+        else:
+            c += 1
+        if c == 3:
             return True
         else:
             return False
     
+    def write(self, fila, columna, valor):
+        if self.control_general(fila, columna, valor) is True:
+            self.tablero[fila][columna] = valor
+            print(self.tablero)
+        return (self.tablero[fila][columna])
+    
+    def juego_terminado(self):
+         for i in range(9):
+            for j in range(9):
+                if ("x" in self.tablero[i][j]):
+                    return False
+            return True
+
+
+
 

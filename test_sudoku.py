@@ -47,6 +47,30 @@ class TestSudoku(unittest.TestCase):
     
     def test_control_general_2(self):
         self.assertEqual(self.game.control_general(0,0,"5"), False)
+    
+    def test_write_1(self):
+        self.assertEqual(self.game.write(0,2,"1"), "1")
+    
+    def test_write_2(self):
+        self.assertEqual(self.game.write(0,7,"2"), "2")
+    
+    def test_write_3(self):
+        self.assertEqual(self.game.write(0,2,"5"), "x")
+
+    def test_overwrite(self):
+        self.assertEqual(self.game.write(0,2,"2"), "2")
+
+    def test_write_fijo(self):
+        self.assertEqual(self.game.write(0,0,"1"), "5")
+    
+   # def test_game_over(self):
+    #    self.assertEqual(self.game.juego_termiando(tabla_completa), True)
+
+    
+    
+
+
+
 
 
 
