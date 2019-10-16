@@ -24,24 +24,23 @@ class UserInput():
         return (tamaño == 4 or tamaño == 9)
     
     def ingresar_dimension(self):
-        tamaño = 0
-        while self.dimension(tamaño) is False:
+        self.tamaño = 0
+        while self.dimension(self.tamaño) is False:
             try:
-                tamaño = int(input("Ingrese el tamaño sudoku (4 o 9): "))
-                if (self.dimension(tamaño)):
-                    return tamaño
+                self.tamaño = int(input("Ingrese el tamaño sudoku (4 o 9): "))
+                if (self.dimension(self.tamaño)):
+                    return self.tamaño
                 print("Ingresaste un tamaño no permitido, intentalo de nuevo")
             except ValueError:
                 print("Ingresaste un tamaño no permitido, intentalo de nuevo")
     
-    def ingresar_valor(self, tabla, tamaño):
-        self.showTable(tabla, tamaño)
+    def ingresar_valor(self, tamaño):
         number = 0
         fila = 0
         columna = 0
-        while not self.ingreso_numero(number, tamaño) or not self.ingreso_coordenadas(fila,
+        while self.ingreso_numero(number, tamaño) is False or self.ingreso_coordenadas(fila,
                                                                                     columna,
-                                                                                    tamaño):
+                                                                                    tamaño) is False:
             try:
                 fila = int(input("\n\nFila: "))
                 columna = int(input("Columna: "))
@@ -51,8 +50,8 @@ class UserInput():
             if (self.ingreso_numero(number, tamaño) and self.ingreso_coordenadas(fila,
                                                                                 columna,
                                                                                 tamaño)):
-                uinput = [fila - 1, columna - 1, number]
-                return uinput
+                return fila - 1, columna - 1, number
+            
             print("Ingresaste un valor no permitido, intentalo de nuevo")
 
     
@@ -71,7 +70,10 @@ class UserInput():
         while not jugar.juego_terminado():
             # mostrar tablero
             jugar.tabla()
-            jugar.ingresar_valor()
+            #self.ingresar_valor(self.tamaño)
+            # jugar.write(*self.ingresar_valor(self.tamaño))
+            x, y, n = self.ingresar_valor(self.tamaño)
+            jugar.write(x, y, n)
             #jugar.
             # poner en el sudoku...
 

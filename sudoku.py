@@ -62,7 +62,7 @@ class Sudoku():
     def write(self, fila, columna, valor):
         if self.control_general(fila, columna, valor) is True:
             self.tablero[fila][columna] = valor
-            print(self.tablero)
+            #print(self.tablero)
         return (self.tablero[fila][columna])
     
     def juego_terminado(self):
