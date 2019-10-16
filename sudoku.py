@@ -80,7 +80,8 @@ class Sudoku():
             self.write(fila, columna, valor)
         self.juego_terminado()
 
-
+    def get_board(self):
+       return self.tablero
 
 
 

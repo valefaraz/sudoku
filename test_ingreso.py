@@ -9,13 +9,13 @@ class TestIngreso(unittest.TestCase):
         self.tamaño = 9
 
     def test_numero_mayor(self):
-        self.assertEqual(self.valor.rango_ingreso(10, self.tamaño), False)
+        self.assertEqual(self.valor.ingreso_numero(10, self.tamaño), False)
 
     def test_numero_menor(self):
-        self.assertEqual(self.valor.rango_ingreso(0, self.tamaño), False)
+        self.assertEqual(self.valor.ingreso_numero(0, self.tamaño), False)
 
     def test_numero_en_rango(self):
-        self.assertEqual(self.valor.rango_ingreso(5, self.tamaño), True)
+        self.assertEqual(self.valor.ingreso_numero(5, self.tamaño), True)
 
     def test_posicion_1(self):
         self.assertEqual(self.valor.ingreso_coordenadas(5, 6, self.tamaño), True)

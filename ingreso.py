@@ -1,4 +1,4 @@
-from sudoku import sudoku
+from sudoku import Sudoku
 #from API import API
 #import sys
 #import math
@@ -21,10 +21,7 @@ class UserInput():
     
 
     def dimension(self, tamaño):
-        if (tamaño != 4 and tamaño != 9):
-            return False
-        else:
-            return True
+        return (tamaño != 4 and tamaño != 9)
     
     def ingresar_dimension(self):
         tamaño = 0
@@ -37,4 +34,16 @@ class UserInput():
             except ValueError:
                 print("Ingresaste un tamaño no permitido, intentalo de nuevo")
     
-    
+    def play(self):
+        self.dimension() # donde se guarda la dimension???
+        # crear sudoku...
+        while not jjj.juego_terminado():
+            # mostrar tablero
+            print(jjj.get_board())
+            # ingresar ...
+            # poner en el sudoku...
+
+
+if __name__ == "__main__":
+    u = UserInput()
+    u.play()
