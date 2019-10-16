@@ -72,16 +72,12 @@ class Sudoku():
         print("Fin del juego")
         return True
         
-    def playing(self, userinput, ori_pos):
-        fila = userinput[0]
-        columna = userinput[1]
-        valor = userinput[2]
-        if self.control_general(fila, columna, valor) is True:
-            self.write(fila, columna, valor)
-        self.juego_terminado()
 
-    def get_board(self):
-       return self.tablero
+    def tabla(self):
+        for i in self.tablero:
+            for j in i:
+                print(j,end=' ')
+            print (' ') 
 
 
 

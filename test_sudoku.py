@@ -16,8 +16,8 @@ class TestSudoku(unittest.TestCase):
                             "xxx419xx5",
                             "xxxx8xx79"])
 
-    def test_playing(self):
-        self.assertTrue(self.game.playing)
+    #def test_playing(self):
+     #   self.assertTrue(self.game.playing)
 
     def test_control_fijos_1(self):
         self.assertEqual(self.game.control_de_fijos(0,0), False)
