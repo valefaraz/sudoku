@@ -1,0 +1,34 @@
+import unittest
+
+from ingreso import UserInput
+
+class TestIngreso(unittest.TestCase):
+
+    def setUp(self):
+        self.valor = UserInput()
+        self.tamaño = 9
+
+    def test_numero_mayor(self):
+        self.assertEqual(self.valor.rango_ingreso(10, self.tamaño), False)
+
+    def test_numero_menor(self):
+        self.assertEqual(self.valor.rango_ingreso(0, self.tamaño), False)
+
+    def test_numero_en_rango(self):
+        self.assertEqual(self.valor.rango_ingreso(5, self.tamaño), True)
+
+    def test_posicion_1(self):
+        self.assertEqual(self.valor.ingreso_coordenadas(5, 6, self.tamaño), True)
+    
+    def test_posicion_2(self):
+        self.assertEqual(self.valor.ingreso_coordenadas(1, 11, self.tamaño), False)
+    
+    def test_posicion_3(self):
+        self.assertEqual(self.valor.ingreso_coordenadas(14, 8, self.tamaño), False)
+
+
+
+
+if __name__ == '__main__':
+    unittest.main()
+    
