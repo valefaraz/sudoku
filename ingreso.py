@@ -1,5 +1,5 @@
 from sudoku import Sudoku
-#from API import API
+from api import api
 #import sys
 #import math
 
@@ -27,7 +27,7 @@ class UserInput():
         self.tamaño = 0
         while self.dimension(self.tamaño) is False:
             try:
-                self.tamaño = int(input("Ingrese el tamaño sudoku (4 o 9): "))
+                self.tamaño = int(input("Ingrese el tamaño del sudoku (4 o 9): "))
                 if (self.dimension(self.tamaño)):
                     return self.tamaño
                 print("Ingresaste un tamaño no permitido, intentalo de nuevo")
@@ -44,7 +44,7 @@ class UserInput():
             try:
                 fila = int(input("\n\nFila: "))
                 columna = int(input("Columna: "))
-                number = int(input("Valor de la casilla: "))
+                number = int(input("Valor: "))
             except ValueError:
                 pass
             if (self.ingreso_numero(number, tamaño) and self.ingreso_coordenadas(fila,
@@ -56,26 +56,16 @@ class UserInput():
 
     
     def play(self):
-        jugar = Sudoku(["53xx7xxxx",
-                            "6xx195xxx",
-                            "x98xxxx6x",
-                            "8xxx6xxx3",
-                            "4xx8x3xx1",
-                            "7xxx2xxx6",
-                            "x6xxxx28x",
-                            "xxx419xx5",
-                            "xxxx8xx79"])
-        self.ingresar_dimension()
-        # crear sudoku...
+        print ("......SUDOKU......\n")
+        print("Intente llenar el tablero sin repetir valores en filas, columnas y bloques \n")
+        jugar = Sudoku(api(self.ingresar_dimension()))
+        #self.ingresar_dimension()
         while not jugar.juego_terminado():
             # mostrar tablero
             jugar.tabla()
-            #self.ingresar_valor(self.tamaño)
             # jugar.write(*self.ingresar_valor(self.tamaño))
             x, y, n = self.ingresar_valor(self.tamaño)
             jugar.write(x, y, n)
-            #jugar.
-            # poner en el sudoku...
 
 
 if __name__ == "__main__":
