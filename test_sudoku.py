@@ -2,6 +2,7 @@ import unittest
 
 from sudoku import Sudoku
 
+
 class TestSudoku(unittest.TestCase):
     
     def setUp(self):
@@ -63,15 +64,21 @@ class TestSudoku(unittest.TestCase):
     def test_write_fijo(self):
         self.assertEqual(self.game.write(0,0,"1"), "5")
     
-   # def test_game_over(self):
-    #    self.assertEqual(self.game.juego_termiando(tabla_completa), True)
+    def test_game_over_1(self):
+        
+        self.game = Sudoku(["533175384", "612195537", "298376369", "882668363",
+                 "481863981", "717328356", "169836281", "916419925",
+                 "816288179"])
 
-    
-    
+        self.assertEqual(self.game.juego_terminado(), True)
 
+    def test_game_over_2(self):
+        
+        self.game = Sudoku(["533175384", "612195537", "298376369", "882668363",
+                 "481863981", "71732x356", "169836281", "916419925",
+                 "816288179"])
 
-
-
+        self.assertEqual(self.game.juego_terminado(), False)
 
 
 

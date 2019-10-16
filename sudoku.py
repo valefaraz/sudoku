@@ -1,7 +1,6 @@
 class Sudoku():
 
     def __init__(self,matriz):
-        self.playing = True
         self.tablero = [ [ 0 for __ in range(9) ] for _ in range(9) ]
         self.tablero_fijo = [ [ 0 for __ in range(9) ] for _ in range(9) ]
         self.convertir_tablero(matriz)
@@ -67,11 +66,21 @@ class Sudoku():
         return (self.tablero[fila][columna])
     
     def juego_terminado(self):
-         for i in range(9):
-            for j in range(9):
-                if ("x" in self.tablero[i][j]):
-                    return False
-            return True
+        for i in range(9):
+            if ("x" in self.tablero[i]):
+                return False
+        print("Fin del juego")
+        return True
+        
+    def playing(self, userinput, ori_pos):
+        fila = userinput[0]
+        columna = userinput[1]
+        valor = userinput[2]
+        if self.control_general(fila, columna, valor) is True:
+            self.write(fila, columna, valor)
+        self.juego_terminado()
+
+
 
 
 
