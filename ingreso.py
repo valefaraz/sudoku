@@ -41,9 +41,12 @@ class UserInput():
         while self.ingreso_numero(number, tamaño) is False or self.ingreso_coordenadas(fila,
                                                                                     columna,
                                                                                     tamaño) is False:
-            fila = int(input("\n\nFila: "))
-            columna = int(input("Columna: "))
-            number = int(input("Valor: "))
+            try:
+                fila = int(input("\n\nFila: "))
+                columna = int(input("Columna: "))
+                number = int(input("Valor: "))
+            except ValueError:
+                pass
 
             if (self.ingreso_numero(number,tamaño) and self.ingreso_coordenadas(fila,
                                                                                 columna,
@@ -59,7 +62,7 @@ class UserInput():
                     
                 return fila - 1, columna - 1, number
                 
-            print("Ingresaste un valor fuera de rango, intentalo de nuevo")
+            print("Ingresaste un valor no permitido, intentalo de nuevo")
 
     
     def play(self):
