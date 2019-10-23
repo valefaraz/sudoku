@@ -1,5 +1,5 @@
 import unittest
-
+from parameterized import parameterized
 from sudoku import Sudoku
 
 
@@ -14,19 +14,20 @@ class TestSudoku(unittest.TestCase):
                             "7xxx2xxx6",
                             "x6xxxx28x",
                             "xxx419xx5",
-                            "xxxx8xx79"])
+                            "xxxx8xx79"],9)
 
-    #def test_playing(self):
-     #   self.assertTrue(self.game.playing)
-
-    def test_control_fijos_1(self):
-        self.assertEqual(self.game.control_de_fijos(0,0), False)
+    @parameterized.expand([
+        (0,0),
+        (0,1)
+    ])
+    def test_control_fijos_1(self,fila,columna):
+        self.assertEqual(self.game.control_de_fijos(fila,columna), False)
 
     def test_control_fijos_2(self):
         self.assertEqual(self.game.control_de_fijos(1,1), True)
 
-    def test_control_fijos_3(self):
-        self.assertEqual(self.game.control_de_fijos(0,1), False)
+    #def test_control_fijos_3(self):
+    #    self.assertEqual(self.game.control_de_fijos(0,1), False)
 
     def test_control_fijos_4(self):
         self.assertEqual(self.game.control_de_fijos(8,8), False)
@@ -68,7 +69,7 @@ class TestSudoku(unittest.TestCase):
         
         self.game = Sudoku(["533175384", "612195537", "298376369", "882668363",
                  "481863981", "717328356", "169836281", "916419925",
-                 "816288179"])
+                 "816288179"],9)
 
         self.assertEqual(self.game.juego_terminado(), True)
 
@@ -76,7 +77,7 @@ class TestSudoku(unittest.TestCase):
         
         self.game = Sudoku(["533175384", "612195537", "298376369", "882668363",
                  "481863981", "71732x356", "169836281", "916419925",
-                 "816288179"])
+                 "816288179"],9)
 
         self.assertEqual(self.game.juego_terminado(), False)
 
