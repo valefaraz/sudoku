@@ -6,7 +6,7 @@ WORKDIR /sudoku
 
 RUN pip freeze > requirements.txt
 
-RUN pip3 install request
+RUN pip3 install requests
 
 RUN pip install -r requirements.txt
 

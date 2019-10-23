@@ -51,10 +51,10 @@ class UserInput():
                 if jugar.control_general(fila - 1, columna - 1,number) is False:
                     print('No se puede escribir sobre un valor fijo')
 
-                if jugar.control_repetir_fila_columna(fila - 1, columna - 1,str(number)) is False:
+                elif jugar.control_repetir_fila_columna(fila - 1, columna - 1,str(number)) is False:
                     print('No se puede escribir, el valor ya se encuentra en la fila y/o columna')
 
-                if jugar.control_repetir_zona(fila - 1,columna - 1,str(number)) is False:
+                elif jugar.control_repetir_zona(fila - 1,columna - 1,str(number)) is False:
                     print('No se puede escribir, el valor se encuentra en la zona')
                     
                 return fila - 1, columna - 1, number
@@ -72,10 +72,9 @@ class UserInput():
             print(jugar.tabla())
             # jugar.write(*self.ingresar_valor(self.tamaño))
             x, y, n = self.ingresar_valor(jugar,self.tamaño)
-            print(x,y,n)
             jugar.write(x, y, n)
-        if jugar.juego_terminado() is True:
-            print("Felicitaciones, ganó el juego")
+        
+        print("Felicitaciones, ganó el juego")
 
 
 
