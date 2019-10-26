@@ -16,33 +16,102 @@ class TestSudoku(unittest.TestCase):
                             "xxx419xx5",
                             "xxxx8xx79"],9)
 
+        self.game4=Sudoku([ "x2xx",
+                            "x3x2",
+                            "x124",
+                            "2xx1"],4)
+
+    @parameterized.expand([
+        (0,1),
+        (1,1),
+        (3,3)
+    ])
+    def test_control_fijos_false4(self,fila,columna):
+        self.assertEqual(self.game4.control_de_fijos(fila,columna), False)
+    
     @parameterized.expand([
         (0,0),
-        (0,1)
+        (0,3),
+        (3,1)
     ])
-    def test_control_fijos_1(self,fila,columna):
+    def test_control_fijos_true4(self,fila,columna):
+        self.assertEqual(self.game4.control_de_fijos(fila,columna), True)
+
+    @parameterized.expand([
+        (0,0),
+        (0,1),
+        (8,8)
+    ])
+    def test_control_fijos_false9(self,fila,columna):
         self.assertEqual(self.game.control_de_fijos(fila,columna), False)
 
-    def test_control_fijos_2(self):
-        self.assertEqual(self.game.control_de_fijos(1,1), True)
+    @parameterized.expand([
+        (1,1),
+        (0,2),
+        (8,6)
+    ])
+    def test_control_fijos_true9(self,fila,columna):
+        self.assertEqual(self.game.control_de_fijos(fila,columna), True)
 
-    #def test_control_fijos_3(self):
-    #    self.assertEqual(self.game.control_de_fijos(0,1), False)
+    @parameterized.expand([
+        (0,2,"8"),
+        (2,0,"9"),
+        (6,8,"6")
+    ])
+    def test_control_repetir_false9(self,fila,columna,valor):
+        self.assertEqual(self.game.control_repetir_fila_columna(fila,columna,valor), False)
 
-    def test_control_fijos_4(self):
-        self.assertEqual(self.game.control_de_fijos(8,8), False)
-
-    def test_control_repetir_1(self):
-        self.assertEqual(self.game.control_repetir_fila_columna(0,2,"8"), False)
+    @parameterized.expand([
+        (0,0,"1"),
+        (0,2,"2"),
+        (7,0,"2")
+    ])
+    def test_control_repetir_true9(self,fila,columna,valor):
+        self.assertEqual(self.game.control_repetir_fila_columna(fila,columna,valor), True)
     
-    def test_control_repetir_2(self):
-        self.assertEqual(self.game.control_repetir_fila_columna(0,0,"1"), True)
-    
-    def test_control_repetir_zona_1(self):
-        self.assertEqual(self.game.control_repetir_zona(0,2,"6"), False)
+    @parameterized.expand([
+        (0,0,"2"),
+        (3,2,"2"),
+        (0,3,"4")
+    ])
+    def test_control_repetir_false4(self,fila,columna,valor):
+        self.assertEqual(self.game4.control_repetir_fila_columna(fila,columna,valor), False)
 
-    def test_control_repetir_zona_2(self):
-        self.assertEqual(self.game.control_repetir_zona(0,2,"1"), True)
+    @parameterized.expand([
+        (0,0,"1"),
+        (3,2,"3"),
+        (0,3,"3")
+    ])
+    def test_control_repetir_true4(self,fila,columna,valor):
+        self.assertEqual(self.game4.control_repetir_fila_columna(fila,columna,valor), True)
+
+    @parameterized.expand([
+        (0,2,"6"),
+        (1,1,"5")
+    ])
+    def test_control_repetir_zona_false9(self,fila,columna,valor):
+        self.assertEqual(self.game.control_repetir_zona(fila,columna,valor), False)
+    
+    @parameterized.expand([
+        (0,2,"2"),
+        (8,6,"4")
+    ])
+    def test_control_repetir_zona_true9(self,fila,columna,valor):
+        self.assertEqual(self.game.control_repetir_zona(fila,columna,valor), True)
+
+    @parameterized.expand([
+        (0,2,"2"),
+        (3,2,"4")
+    ])
+    def test_control_repetir_zona_false4(self,fila,columna,valor):
+        self.assertEqual(self.game4.control_repetir_zona(fila,columna,valor), False)
+    
+    @parameterized.expand([
+        (0,2,"1"),
+        (3,1,"3")
+    ])
+    def test_control_repetir_zona_true4(self,fila,columna,valor):
+        self.assertEqual(self.game4.control_repetir_zona(fila,columna,valor), True)
     
     def test_control_general_1(self):
         self.assertEqual(self.game.control_general(0,2,"1"), True)
@@ -50,14 +119,23 @@ class TestSudoku(unittest.TestCase):
     def test_control_general_2(self):
         self.assertEqual(self.game.control_general(0,0,"5"), False)
     
-    def test_write_1(self):
+    def test_write9_1(self):
         self.assertEqual(self.game.write(0,2,"1"), "1")
     
-    def test_write_2(self):
+    def test_write9_2(self):
         self.assertEqual(self.game.write(0,7,"2"), "2")
     
-    def test_write_3(self):
+    def test_write9_3(self):
         self.assertEqual(self.game.write(0,2,"5"), "x")
+    
+    def test_write4_1(self):
+        self.assertEqual(self.game4.write(0,2,"1"), "1")
+    
+    def test_write4_2(self):
+        self.assertEqual(self.game4.write(3,1,"2"), "x")
+    
+    def test_write4_3(self):
+        self.assertEqual(self.game4.write(3,2,"3"), "3")
 
     def test_overwrite(self):
         self.assertEqual(self.game.write(0,2,"2"), "2")
@@ -80,6 +158,15 @@ class TestSudoku(unittest.TestCase):
                  "816288179"],9)
 
         self.assertEqual(self.game.juego_terminado(), False)
+
+    def test_game_over_3(self):
+        
+        self.game4 = Sudoku(["5331",
+                            "6121", 
+                            "2983", 
+                            "8826"],4)
+
+        self.assertEqual(self.game4.juego_terminado(), True)
 
 
 
