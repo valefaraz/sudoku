@@ -24,7 +24,12 @@ class TestSudoku(unittest.TestCase):
     @parameterized.expand([
         (0,1),
         (1,1),
-        (3,3)
+        (3,3),
+        (1,3),
+        (2,1),
+        (2,2),
+        (2,3),
+        (3,0)
     ])
     def test_control_fijos_false4(self,fila,columna):
         self.assertEqual(self.game4.control_de_fijos(fila,columna), False)
@@ -32,7 +37,12 @@ class TestSudoku(unittest.TestCase):
     @parameterized.expand([
         (0,0),
         (0,3),
-        (3,1)
+        (3,1),
+        (0,2),
+        (1,0),
+        (1,2),
+        (3,2),
+        (2,0)
     ])
     def test_control_fijos_true4(self,fila,columna):
         self.assertEqual(self.game4.control_de_fijos(fila,columna), True)
@@ -40,7 +50,22 @@ class TestSudoku(unittest.TestCase):
     @parameterized.expand([
         (0,0),
         (0,1),
-        (8,8)
+        (8,8),
+        (0,4),
+        (1,0),
+        (1,3),
+        (1,4),
+        (1,5),
+        (7,8),
+        (2,1),
+        (2,2),
+        (2,7),
+        (3,0),
+        (3,4),
+        (3,8),
+        (4,0),
+        (4,3),
+        (4,5)
     ])
     def test_control_fijos_false9(self,fila,columna):
         self.assertEqual(self.game.control_de_fijos(fila,columna), False)
@@ -48,7 +73,25 @@ class TestSudoku(unittest.TestCase):
     @parameterized.expand([
         (1,1),
         (0,2),
-        (8,6)
+        (8,6),
+        (8,5),
+        (7,0),
+        (0,3),
+        (8,0),
+        (8,1),
+        (0,3),
+        (0,6),
+        (0,7),
+        (0,8),
+        (3,1),
+        (3,2),
+        (3,3),
+        (3,5),
+        (3,6),
+        (4,1),
+        (4,2),
+        (4,4),
+        (4,6)
     ])
     def test_control_fijos_true9(self,fila,columna):
         self.assertEqual(self.game.control_de_fijos(fila,columna), True)
@@ -148,7 +191,6 @@ class TestSudoku(unittest.TestCase):
         self.game = Sudoku(["533175384", "612195537", "298376369", "882668363",
                  "481863981", "717328356", "169836281", "916419925",
                  "816288179"],9)
-
         self.assertEqual(self.game.juego_terminado(), True)
 
     def test_game_over_2(self):
@@ -156,7 +198,6 @@ class TestSudoku(unittest.TestCase):
         self.game = Sudoku(["533175384", "612195537", "298376369", "882668363",
                  "481863981", "71732x356", "169836281", "916419925",
                  "816288179"],9)
-
         self.assertEqual(self.game.juego_terminado(), False)
 
     def test_game_over_3(self):
@@ -167,6 +208,15 @@ class TestSudoku(unittest.TestCase):
                             "8826"],4)
 
         self.assertEqual(self.game4.juego_terminado(), True)
+    
+    def test_game_over_4(self):
+        
+        self.game4 = Sudoku(["5331",
+                            "6121", 
+                            "2983", 
+                            "882x"],4)
+
+        self.assertEqual(self.game4.juego_terminado(), False)
 
 
 
